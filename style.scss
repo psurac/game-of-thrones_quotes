@@ -1,0 +1,261 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  // background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+} */
+
+$color1: rgb(51, 28, 13);
+$color2: rgb(102, 50, 31);
+$color3: rgb(186, 85, 13);
+$color4: rgb(255, 240, 143);
+$color5: rgb(252, 254, 241);
+$color6: rgb(195, 142, 96);
+
+@font-face {
+  font-family: canterbury;
+  src: url('./canterbury/Canterbury.ttf');
+}
+
+@font-face {
+  font-family: got;
+  src: url('./Game-of-Thrones-Font/Game-of-Thrones.ttf');
+}
+
+@mixin clickable {
+  cursor: pointer;
+  background-color: rgba($color5, 0.65);
+  transition: background-color 0.25s;
+  transition: box-shadow 0.25s;
+  &:hover {
+    background-color: rgba($color5, 0.95);
+    box-shadow: .3px .3px 0px $color1;
+  }
+  &:active {
+    background-color: rgba($color6, 0.95);
+  }
+}
+
+@mixin borders {
+  margin: 1rem;
+  border: 1px solid $color1;
+  border-radius: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 1200px;
+  overflow-x: hidden;
+  margin: 0 auto;
+  background-color: $color4;
+  color: $color1;
+  font-family: "Helvetica Neue", "Helvetica";
+}
+
+h1, h2 {
+  font-family: got, canterbury, "Helvetica Neue", "Helvetica";
+  margin-bottom: .5rem;
+}
+
+#app {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  position: relative;
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    padding: 1rem;
+    border-bottom: $color2 1px solid;
+    border-radius: 5px;
+    gap: 0.7rem;
+    background-color: $color2;
+    color: $color5;
+  }
+  .nav-button-container {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+button {
+  background-color: $color6;
+  color: $color5;
+  border-radius: 8px;
+  border: 1px solid $color5;
+  padding: 0.3em 0.6em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  &:hover {
+    background-color: rgba($color6, 0.6);
+  }
+  &:active {
+    background-color: $color3;
+  }
+  &:disabled {
+    background-color: rgba($color6, 0.5);
+    cursor: not-allowed;
+  }
+}
+
+.quote-div {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  @include borders;
+  width: 50vw;
+  @include clickable;
+  p {
+    text-align: justify;
+  }
+  span {
+    text-align: right;
+  }
+}
+
+input {
+  height: 20px;
+  margin: 7px;
+}
+
+#item-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  align-items: center;
+
+  .item-li {
+    width: 50vw;
+    padding: 1rem;
+    @include borders;
+    @include clickable;
+  }
+  .item-li-multible {
+    width: 50vw;
+    @include borders;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    h4, p {
+      width: 100%;
+      height: 100%;
+      padding: 0.5rem 1rem;
+      @include clickable;
+    }
+  }
+}
+
+#subpage-container{
+  position: fixed;
+  top: 10vh;
+  bottom: 10vh;
+  right: 5vw;
+  left: 5vh;
+  gap: .5rem;
+  background-color: rgba($color5, 0.96);
+  @include borders();
+  overflow-y: scroll;
+
+  #close-subpage {
+    position: fixed;
+    top: 10vh;
+    right: 5vw;
+  }
+  .subpage-content-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+
+    h2 {
+      text-decoration-line: underline;
+    }
+
+    .characters, .houses {
+      width: 50vw;
+      padding: 0.5rem;
+      @include borders;
+      @include clickable;
+      background-color: rgba($color3, 0.2);
+    }
+    .no-house {
+      width: 50vw;
+      padding: 0.5rem;
+      @include borders;
+    }
+
+    .quote {
+      display: flex;
+      flex-direction: column;
+      width: 70vw;
+
+      p {
+        @include borders;
+        padding: .5rem;
+        background-color: rgba($color4, 0.3);
+      }
+    }
+
+    #quote-change-text {
+      font-size: 12px;
+      width: 50vw;
+      text-align: justify;
+    }
+  }
+}
